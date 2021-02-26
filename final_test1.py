@@ -22,3 +22,5 @@ img = img.reshape(1,28,28,1)
 prediction = model.predict(img)
 print(prediction)
 model.summary()
+
+#HOLAAAAAAAAAAAAAAAAA
