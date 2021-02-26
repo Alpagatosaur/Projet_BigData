@@ -65,7 +65,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import SGD
 import cv2
 from tensorflow import keras
-
+import matplotlib.pyplot as plt
 
 #Charge le modele
 data = mnist.load_data()
@@ -78,16 +78,18 @@ sgd_optimizer = SGD(lr=3)
 model.compile(loss="sparse_categorical_crossentropy", optimizer=sgd_optimizer, metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=5, batch_size=32)
 
-model.save('D:/Users/tanch/Documents/Python/BigData/Projet/Projet_BigData/mnist_trained.h5')
+model.save('Projet_BigData/mnist_trained.h5')
 
 #prediction
-model = keras.models.load_model('D:/Users/tanch/Documents/Python/BigData/Projet/Projet_BigData/mnist_trained.h5')
-img = cv2.imread('D:/Users/tanch/Documents/VisualS/BigData/Projet/Projet_BigData/example_mnist.png')
+model = keras.models.load_model('Projet_BigData/mnist_trained.h5')
+
+img = cv2.imread('D:/Users/tanch/Documents/Python/BigData/Projet/Projet_BigDataexample_mnist.png')
+plt.imshow(img)
+img=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
 print(img.shape)
 
 img=cv2.resize(img,(28,28))
 
-img=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
 img = img.reshape(1,28*28)
 prediction = model.predict(img)
 
