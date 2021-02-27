@@ -23,4 +23,4 @@ sgd_optimizer = SGD(lr=3)
 model.compile(loss="sparse_categorical_crossentropy", optimizer=sgd_optimizer, metrics=['accuracy'])
 model.fit(X_train, y_train, epochs=5, batch_size=32)
 
-model.save('mnist_trained.h5')
+model.save('model_trained.h5')
