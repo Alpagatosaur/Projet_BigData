@@ -12,8 +12,17 @@ import matplotlib.pyplot as plt
 import librosa as lr
 
 
+#Select audio file
+#path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
+#path ='le-cri-du-hibou-des-marais-asio-flammeus2.wav'
+#path ='le-cri-du-hibou-des-marais-asio-flammeus5.wav'
+path ='chouette-hulotte-chant-et-cris1.wav'
+
+
+
+
+
 #Load audio file
-path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
 y, sr = lr.core.load(path)
 
 #Display amplitude / time
@@ -32,7 +41,7 @@ import matplotlib.pyplot as plt
 import librosa as lr
 
 #Load audio file
-path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
+#path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
 y, sr = lr.core.load(path)
 
 onset_env = lr.onset.onset_strength(y, sr=sr)
@@ -63,7 +72,7 @@ import librosa as lr
 import librosa.display
 
 #Load audio file
-path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
+#path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
 y, sr = lr.core.load(path)
 
 lr.feature.melspectrogram(y=y, sr=sr)
