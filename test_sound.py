@@ -4,6 +4,7 @@ Created on Sat Feb 27 10:48:46 2021
 
 @author: tanch
 """
+#https://iq.opengenus.org/introduction-to-librosa/
 ##_____________________________________________________________________________________________
 #Intro
 import numpy as np 
