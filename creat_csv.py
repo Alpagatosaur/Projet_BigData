@@ -24,57 +24,58 @@ from glob import glob
 import librosa
 from librosa import feature
 import numpy as np
+import csv
 
 
+#Regrouper les noms des audio files
 audio_files = glob('Sons/'+'*.wav')
 print(f'Number of normal audios : {len(audio_files)}')
 
-
+#Definitions des methodes de traitements
 fn_list_i = [
-    feature.chroma_stft,
-    feature.spectral_centroid,
-    feature.spectral_bandwidth,
-    feature.spectral_rolloff
+    feature.chroma_stft
 ]
   
 fn_list_ii = [
-    feature.rms,
     feature.zero_crossing_rate
 ]
 
-def get_feature_vector(y,sr):  
+#Creation d un vecteur
+def get_feature_vector(y,sr):
+    
   feat_vect_i = [ np.mean(funct(y,sr)) for funct in fn_list_i]
+
   feat_vect_ii = [ np.mean(funct(y)) for funct in fn_list_ii]
   
-  feature_vector =   feat_vect_i + feat_vect_ii  
+  feature_vector =  feat_vect_i   + feat_vect_ii
+      
   return feature_vector
 
 
-#build the matrix with normal audios featurized
+#build the matrix with audios featurized
 audios_feat = []
 for file in audio_files:
   '''
   y is the time series array of the audio file, a 1D np.ndarray
   sr is the sampling rate, a number
   '''  
+  #list_1D va rependre le nom de chaque audio
+  list_1D = []
+  list_1D.append(file)
   y,sr = librosa.load(file,sr=None)   
   feature_vector = get_feature_vector(y, sr) 
-  audios_feat.append(feature_vector)  
+  audios_feat.append(list_1D + feature_vector)
+  list_1D.remove(file)
   print('.', end= " ")
   
-  
-  
-  
-  import csv
 
+
+#Creation d un fichier csv
 audio_files_chouettes = 'chouettes.csv'
-
+#Definition des titres des colonnes
 header =[
+    'name_audio',
     'chroma_stft',
-    'spectral_centroid',
-    'spectral_bandwidth',
-    'spectral_rolloff',
-    'rms',
     'zero_crossing_rate'
 ]
 
@@ -86,10 +87,6 @@ with open(audio_files_chouettes,'+w') as f:
 
   
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
 
 df = pd.DataFrame(pd.read_csv('chouettes.csv'))
 
