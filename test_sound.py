@@ -13,12 +13,11 @@ import librosa as lr
 
 
 #Select audio file
-#path ='le-cri-du-hibou-des-marais-asio-flammeus1.wav'
-#path ='le-cri-du-hibou-des-marais-asio-flammeus2.wav'
-#path ='le-cri-du-hibou-des-marais-asio-flammeus5.wav'
-path ='chouette-hulotte-chant-et-cris1.wav'
-
-
+#path ='Sons/le-cri-du-hibou-des-marais-asio-flammeus1.wav'
+#path ='Sons/le-cri-du-hibou-des-marais-asio-flammeus2.wav'
+#path ='Sons/chouette-hulotte-chant-et-cris1.wav'
+#path ='Sons/chouette-hulotte-chant-et-cris2.wav'
+path ='Sons/chouette-hulotte-chant-et-cris5.wav'
 
 
 

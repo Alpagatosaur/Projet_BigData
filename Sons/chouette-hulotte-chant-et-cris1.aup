@@ -1,17 +1,11 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="chouette-hulotte-chant-et-cris1_data" version="1.3.0" audacityversion="2.4.2" sel0="4.0181602290" sel1="4.0181602290" vpos="448" h="0.9087948330" zoom="637.1074955034" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="chouette-hulotte-chant-et-cris1_data" version="1.3.0" audacityversion="2.4.2" sel0="4.0181602290" sel1="4.0181602290" vpos="0" h="0.0000000000" zoom="637.1074955034" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
 	<tags>
+		<tag name="ARTIST" value="Tanch"/>
 		<tag name="TITLE" value="Chouette hulotte - chant et cris"/>
-		<tag name="compatible_brands" value="isomiso2mp41"/>
-		<tag name="ARTIST" value="ToToWildlife"/>
-		<tag name="major_brand" value="isom"/>
-		<tag name="YEAR" value="20200411"/>
-		<tag name="Software" value="Lavf57.56.101"/>
-		<tag name="minor_version" value="512"/>
+		<tag name="YEAR" value="2021"/>
 		<tag name="purl" value="https://www.youtube.com/watch?v=xOBg0bVJiFk"/>
-		<tag name="comment" value="Chouette hulotte, chant cri   https://fr.m.wikipedia.org/wiki/Chouette_hulotte  ( Tawny owl or brown owl, Strix aluco)  #ToToWilldlife #ChouetteHulotte"/>
-		<tag name="description" value="Chouette hulotte, chant cri   https://fr.m.wikipedia.org/wiki/Chouette_hulotte  ( Tawny owl or brown owl, Strix aluco)  #ToToWilldlife #ChouetteHulotte"/>
 	</tags>
 	<wavetrack name="chouette-hulotte-chant-et-cris1" isSelected="1" height="150" minimized="0" channel="0" linked="1" mute="0" solo="0" rate="44100" gain="1.0" pan="0.0" colorindex="0">
 		<waveclip offset="0.00000000" colorindex="0">
