@@ -92,3 +92,40 @@ df = pd.DataFrame(pd.read_csv('chouettes.csv'))
 
 columns = df.columns
 print(columns)
+
+
+
+
+#https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html
+
+
+#Add img in csv
+
+import librosa
+import pandas as pd
+import matplotlib.pyplot as plt
+import csv
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+import keras
+from keras import layers
+from keras.models import Sequential
+import warnings
+
+
+cmap = plt.get_cmap('inferno')
+plt.figure(figsize=(8,8))
+for file in audio_files:
+    name_file = ""
+    list1_file=file.split('.wav')
+    list_file=file.split('Sons/')
+    name_file = name_file + list_file[0]
+    y,sr = librosa.load(file,sr=None)
+    plt.specgram(y, Fs=2, Fc=0, noverlap=128, cmap=cmap, sides='default', mode='default', scale='dB');
+    plt.axis('off');
+    str_img = name_file + '.png'
+    str_im = str_img 
+    fig = plt.figure()
+    fig.set_size_inches(5, 5)
+    plt.savefig(str_im)
+    plt.show()
