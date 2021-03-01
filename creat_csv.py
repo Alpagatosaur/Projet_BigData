@@ -115,17 +115,16 @@ import warnings
 
 cmap = plt.get_cmap('inferno')
 plt.figure(figsize=(8,8))
-for file in audio_files:
-    name_file = ""
-    list1_file=file.split('.wav')
-    list_file=file.split('Sons/')
-    name_file = name_file + list_file[0]
+for i in range (len(audio_files)):
+    file=audio_files[i]
+    name1 = audio_files[i].split('Sons\\')
+    name2 = name1[-1].split('.wav')
+    name_file = name2[0]
     y,sr = librosa.load(file,sr=None)
     plt.specgram(y, Fs=2, Fc=0, noverlap=128, cmap=cmap, sides='default', mode='default', scale='dB');
     plt.axis('off');
     str_img = name_file + '.png'
-    str_im = str_img 
-    fig = plt.figure()
-    fig.set_size_inches(5, 5)
-    plt.savefig(str_im)
+
+    plt.savefig(str_img)
+
     plt.show()
