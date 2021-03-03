@@ -143,17 +143,20 @@ X_train, y_train = train
 img1 = X_train[0]
 import matplotlib.pyplot as plt
 
-
+#type numpy.ndarray
 plt.imshow(img1, cmap="gray")
+
 
 #png to type(img1)
 #https://stackoverflow.com/questions/31386096/importing-png-files-into-numpy
-import imageio
+import cv2
 
-im = imageio.imread(str_img)
+im = cv2.imread(str_img)
 print(im.shape)
 
-
-import imageio
-import glob
-
+#creat a List type tuple
+from glob import glob
+List = ()
+group_img = glob('Images_with_py/'+'*.png')
+for image in group_img:
+    List.append(cv2.imread(image))
