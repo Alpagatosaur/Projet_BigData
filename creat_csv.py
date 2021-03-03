@@ -85,13 +85,19 @@ with open(audio_files_chouettes,'+w') as f:
   csv_writer.writerow(header)
   csv_writer.writerows(audios_feat)
 
-  
+
+
+
+#show
 import pandas as pd
 
 df = pd.DataFrame(pd.read_csv('chouettes.csv'))
 
 columns = df.columns
+lesnoms = df['name_audio']
 print(columns)
+print(lesnoms)
+
 
 
 
@@ -99,7 +105,7 @@ print(columns)
 #https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html
 
 
-#Add img in csv
+#Creat img with name_audio in csv
 
 import librosa
 import pandas as pd
@@ -114,7 +120,6 @@ import warnings
 
 
 cmap = plt.get_cmap('inferno')
-plt.figure(figsize=(8,8))
 for i in range (len(audio_files)):
     file=audio_files[i]
     name1 = audio_files[i].split('Sons\\')
@@ -123,8 +128,32 @@ for i in range (len(audio_files)):
     y,sr = librosa.load(file,sr=None)
     plt.specgram(y, Fs=2, Fc=0, noverlap=128, cmap=cmap, sides='default', mode='default', scale='dB');
     plt.axis('off');
-    str_img = name_file + '.png'
+    str_img = 'Images_with_py/' + name_file + '.png'
 
     plt.savefig(str_img)
 
     plt.show()
+    
+
+#exemple
+from tensorflow.keras.datasets import mnist 
+data = mnist.load_data()
+train, test = data
+X_train, y_train = train
+img1 = X_train[0]
+import matplotlib.pyplot as plt
+
+
+plt.imshow(img1, cmap="gray")
+
+#png to type(img1)
+#https://stackoverflow.com/questions/31386096/importing-png-files-into-numpy
+import imageio
+
+im = imageio.imread(str_img)
+print(im.shape)
+
+
+import imageio
+import glob
+
