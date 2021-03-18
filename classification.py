@@ -1,24 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 27 15:23:00 2021
+Created on Thu Mar 18 16:38:07 2021
 
 @author: tanch
 """
-
-#https://medium.com/@klintcho/creating-an-open-speech-recognition-dataset-for-almost-any-language-c532fb2bc0cf
-
-
-
-# import required libraries 
-#from pydub import AudioSegment 
-#from pydub.playback import play 
-
-# Import an audio file 
-# Format parameter only 
-# for readability 
-#wav_file = AudioSegment.from_file(file = 'chouette-hulotte-chant-et-cris1.wav', format = "wav") 
-
-#https://medium.com/@alexandro.ramr777/audio-files-to-dataset-by-feature-extraction-with-librosa-d87adafe5b64
 
 from glob import glob
 import librosa
@@ -26,9 +11,8 @@ from librosa import feature
 import numpy as np
 import csv
 
-
 #Regrouper les noms des audio files
-path = "D:/Users/tanch/Documents/Python/BigData/Projet/Projet_BigData/Sons/" + "*.wav"
+path = "Sons/" + "*.wav"
 audio_files = glob(path)
 print(f'Number of normal audios : {len(audio_files)}')
 
@@ -72,7 +56,7 @@ for file in audio_files:
 
 
 #Creation d un fichier csv
-audio_files_chouettes = 'D:/Users/tanch/Documents/Python/BigData/Projet/Projet_BigData/chouettes.csv'
+audio_files_chouettes = 'Data/chouettes.csv'
 #Definition des titres des colonnes
 header =[
     'name_audio',
@@ -88,19 +72,15 @@ with open(audio_files_chouettes,'+w') as f:
 
 
 
-
 #show
 import pandas as pd
 
-df = pd.DataFrame(pd.read_csv('chouettes.csv'))
+df = pd.DataFrame(pd.read_csv('Data/chouettes.csv'))
 
 columns = df.columns
 lesnoms = df['chroma_stft']
 print(columns)
 print(lesnoms)
-
-
-
 
 #https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html
 
@@ -178,3 +158,4 @@ plt.imshow(img) # followed by
 plt.show() # to show the first image, then 
 plt.imshow(img2) # followed by
 plt.show() # to show you the second image.
+
