@@ -22,6 +22,8 @@ audios_feat = [] # A completer avec la methode --matrix_audio_featurized--
 
 
 ## -*- Les methodes -*-
+
+
 def check_audio_files(path, audio_files):
     audio_files = glob(path)
     if( len(audio_files) > 0):
@@ -39,16 +41,19 @@ def get_feature_vector(y,sr,fn_list_i ,fn_list_ii ,fn_list_iii):
 
 
 
+## -*- Methode pour creer csv -*-
 def creation_csv(nom_pour_csv):
     path = "Sons/" + "*.wav"
     audio_files = glob(path) # dossier ou se trouve les sons ---a modifier si besoin
     
-#Differents outils pour traiter les sons
+    #Differents outils pour traiter les sons
     fn_list_i = [feature.chroma_stft]
     fn_list_ii = [feature.melspectrogram]
     fn_list_iii = [feature.mfcc]
     
-#Creation d une matrice a partir des sons traites
+
+
+    #Creation d une matrice a partir des sons traites
     for file in audio_files:
         #list_1D va rependre le nom de chaque audio
         name1 = file.split('Sons\\')
@@ -60,7 +65,7 @@ def creation_csv(nom_pour_csv):
         audios_feat.append(list_1D + feature_vector)
         list_1D.clear()
         
-#Creation csv
+        #Creation csv
     audio_files_chouettes = nom_pour_csv + '.csv'
     #entete
     header =[
@@ -68,24 +73,23 @@ def creation_csv(nom_pour_csv):
     'Chromagram',
     'Mel-scaled-spectrogram',
     'Mel-frequency-coefficients']
-#WARNING : this overwrites the file each time. Be aware of this because feature extraction step takes time.
+    #WARNING : this overwrites the file each time. Be aware of this because feature extraction step takes time.
     with open(audio_files_chouettes,'+w') as f:
         csv_writer = csv.writer(f, delimiter = ',') #Evitez de changer delimiter RISQUE d erreur
         csv_writer.writerow(header)
         csv_writer.writerows(audios_feat)
-#Check  
-    df = pd.DataFrame(pd.read_csv(audio_files_chouettes))
-    columns = df.columns
-    lesnoms = df['Chromagram']
-    print(columns)
-    print(lesnoms)
+
     return " Fichier csv    OK "
 
-##  -*- Appel fonction  -*-
+
+
+
+
+##  -*- Appel fonction  -*-   MAIN ---------------------------------------
 creation_csv('tab_csv')
 
-#Probleme import csv
-df = pd.DataFrame(pd.read_csv('tab_csv'))
+## -*- Test -*-
+df = pd.DataFrame(pd.read_csv('tab_csv.csv'))
 columns = df.columns
 lesnoms = df['Chromagram']
 print(columns)
