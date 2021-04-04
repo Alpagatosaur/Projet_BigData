@@ -18,9 +18,11 @@ from librosa import feature
 import numpy as np
 import csv
 import pandas as pd
+import csv_With_path as fct_csv
 
 
-df = pd.DataFrame(pd.read_csv('hibou_base_dB.csv'))
+csv_file = fct_csv.get_csv("Sons/")
+df = pd.DataFrame(pd.read_csv(csv_file))
 columns = df.columns
 print(columns)
 
