@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['Code_Classification.py', 'Creat_csv.py', 'csv_With_path.py', 'Get_csv.py', 'Reseau_neurone.py']
+recent_files = ['C:\\Users\\tanch\\.spyder-py3\\temp.py']
 
