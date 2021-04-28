@@ -18,7 +18,7 @@ from PIL import Image
 
 path = "Dataset/"
 cathegories = ["Autres/" , "Chouettes_Hiboux/"]
-#480 audio tot
+#480 audio total
 
 audio_files = []
 for k in cathegories:
@@ -35,14 +35,17 @@ for elt in audio_files:
         Ligne =[]
         nom = son.split(".wav")
         nom = nom[0].split("/")
-
+        
+        #Construction array image
         wave_data, wave_rate = librosa.load(son)
         wave_data, _ = librosa.effects.trim(wave_data)
         
+        #On coupe le son pour avoir la meme duree
         song_sample = []
         db_array =[]
         sample_length = 5*wave_rate
         samples_from_file = []
+        
         #The variable below is chosen mainly to create a 216x216 image
         N_mels=216
         cpt = cpt + 1
@@ -56,7 +59,8 @@ for elt in audio_files:
                 db_array = (np.asarray(normalised_db)*255).astype(np.uint8)
                 db_image =  Image.fromarray(np.array([db_array, db_array, db_array]).T)
                 db_image.save("Output/"+genre+cptNom + ".png")
-        if(len(db_array)!=0):
+        
+        if(len(db_array)!=0): #Si on a reussi a lire une image
             Ligne.append(nom[-1])
             Ligne.append(genre)
             Ligne.append(db_array)
