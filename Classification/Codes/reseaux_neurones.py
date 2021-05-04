@@ -61,22 +61,47 @@ Out: (252, 216, 216)
 
 """
 
-X_train = X_train.reshape(len(X_train),img_size*img_size)
+#X_train = X_train.reshape(len(X_train),img_size*img_size)/255
+#y_train = y_train.reshape(len(y_train),img_size*img_size)
 
-input_shape = (len(X_train),img_size*img_size)
+#input_shape = (img_size*img_size,)
 
 
 
-model = Sequential() # crée moi un réseau de neurones vides
+#model = Sequential() # crée moi un réseau de neurones vides
 
-model.add(Dense(200, activation="relu", input_shape=input_shape ))
-model.add(Dense(100, activation="relu"))
-model.add(Dense(10, activation="softmax"))
+#model.add(Dense(200, activation="relu", input_shape=input_shape ))
+#model.add(Dense(100, activation="relu"))
+#model.add(Dense(10, activation="softmax"))
 
-sgd_optimizer = SGD(lr=2)
+#sgd_optimizer = SGD(lr=3)
 
-model.compile(loss="binary_crossentropy", optimizer=sgd_optimizer, metrics=['accuracy'])
+#model.compile(loss="binary_crossentropy", optimizer=sgd_optimizer, metrics=['accuracy'])
 
-model.fit(X_train, y_train, epochs=5)
+X_train = X_train/ 255
+
+X_train = X_train.reshape(len(X_train), 216, 216, 1)
+
+
+model_conv = Sequential()
+model_conv.add(Conv2D(32, kernel_size=(3, 3), activation="relu", input_shape=(216, 216, 1)))
+model_conv.add(Dropout(0.3)) #dropout
+model_conv.add(Conv2D(64, kernel_size=(3, 3), activation="relu"))
+
+
+model_conv.add(Flatten())
+#partie 2 
+
+model_conv.add(Dense(300, activation="relu"))
+model_conv.add(Dense(250, activation="relu"))
+model_conv.add(Dense(10, activation="softmax"))
+
+
+model_conv.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
+
+
+
+model_conv.fit(X_train, y_train, epochs=5,batch_size=32)
+
 
 #print(model.score(X_train, y_train))
