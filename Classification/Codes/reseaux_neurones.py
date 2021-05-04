@@ -13,6 +13,8 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Conv2D, Flatten, MaxPooling2D, Dropout, Dense, Activation, BatchNormalization
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import SGD
+import tensorflow as tf
+
 
 Datadirectory="Output/"
 Classes= ["Autres/","Chouettes_Hiboux/"]
@@ -57,7 +59,7 @@ y_train = np.asarray(y_train)
 
 """
 X_train.shape
-Out: (252, 216, 216)
+Out: (252, 100, 100)
 
 """
 
@@ -77,7 +79,7 @@ model_conv.add(Conv2D(64, kernel_size=(3, 3), activation="relu"))
 model_conv.add(Flatten())
 #partie 2 
 
-model_conv.add(Dense(300, activation="relu"))
+model_conv.add(Dense(100, activation="relu"))
 model_conv.add(Dense(250, activation="relu"))
 model_conv.add(Dense(10, activation="softmax"))
 
@@ -90,3 +92,29 @@ model_conv.fit(X_train, y_train, epochs=1,batch_size=10)
 model_conv.save("model.h5")
 
 
+#model_conv.summary()
+
+"""
+TEST
+"""
+X_test=[]
+y_test = []
+for k in test:
+    X_test.append(np.asarray(k[0]))
+    y_test.append(np.asarray(k[1]))
+
+#X_train = X_train/ 255
+#X_train = tuple(X_train)
+X_test = np.asarray(X_test)
+
+
+y_test = np.asarray(y_test)
+
+
+X_test = X_test/ 255
+
+X_test = X_test.reshape(len(X_test), 100, 100, 1)
+
+new_model = tf.keras.models.load_model("model.h5")
+
+Prediction = new_model.predict(X_test, y_test)

@@ -13,7 +13,8 @@ import tensorflow as tf
 img_size = 100
 new_model = tf.keras.models.load_model("model.h5")
 frame = cv2.imread("Output/Autres/Autre1.png")
-img = cv2.resize(frame,(img_size,img_size))
-
+frame = np.array(frame)
+img = cv2.resize(frame,(img_size,img_size,))
+img = np.array(img)/255
 Prediction = new_model.predict(img)
 print(Prediction)
