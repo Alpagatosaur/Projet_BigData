@@ -31,7 +31,6 @@ for category in Classes:
         img_array = cv2.imread(img)
         new_array = cv2.resize(img_array,(img_size,img_size))
         bw_img = cv2.cvtColor(new_array, cv2.COLOR_BGR2GRAY)
-        print(bw_img.shape)
         if(len(new_array) !=0):
             Ligne.append(bw_img)
             Ligne.append(genre)
@@ -87,7 +86,7 @@ model_conv.compile(loss="sparse_categorical_crossentropy", optimizer="adam", met
 
 
 
-model_conv.fit(X_train, y_train, epochs=10,batch_size=10)
+model_conv.fit(X_train, y_train, epochs=3,batch_size=10)
 model_conv.save("model.h5")
 
 
