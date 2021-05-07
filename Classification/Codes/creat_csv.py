@@ -58,7 +58,7 @@ for elt in audio_files:
                 normalised_db = sklearn.preprocessing.minmax_scale(db)
                 db_array = (np.asarray(normalised_db)*255).astype(np.uint8)
                 db_image =  Image.fromarray(np.array([db_array, db_array, db_array]).T)
-                db_image.save("Output/"+genre+cptNom + ".png")
+                db_image.save("Output/"+genre+cptNom + ".png") # IMAGES
         
         if(len(db_array)!=0): #Si on a reussi a lire une image
             Ligne.append(nom[-1])

@@ -26,4 +26,32 @@ img = np.array(img)/255
 X_test = img.reshape(1, 100, 100, 1)
 y_test = 0
 Prediction = new_model.predict(X_test,y_test)
-print(Prediction)
+TabPred = []
+for elt in Prediction[0]:
+    if elt > 0.8 :
+        TabPred.append(1)
+    else:
+        TabPred.append(0)
+
+print("AUTRE  /   HIBOU OU CHOUETTE")
+print(TabPred)
+
+
+
+frame = cv2.imread("Output/Chouettes_Hiboux/Chouette_OU_Hibou1.png")
+frame = np.array(frame)
+img = cv2.resize(frame,(img_size,img_size,))
+img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img = np.array(img)/255
+X_test = img.reshape(1, 100, 100, 1)
+y_test = 1
+Prediction = new_model.predict(X_test,y_test)
+TabPred = []
+for elt in Prediction[0]:
+    if elt > 0.8 :
+        TabPred.append(1)
+    else:
+        TabPred.append(0)
+        
+print("AUTRE  /   HIBOU OU CHOUETTE")
+print(TabPred)

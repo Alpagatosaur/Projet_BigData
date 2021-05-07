@@ -42,7 +42,14 @@ Genre = 1 == Chouette ou hibou
 
 """
 Data_List = shuffle(Data_List) # melange la liste
+
+
 train , test = train_test_split(Data_List)
+
+
+"""
+ Creation d un modele
+"""
 X_train=[]
 y_train = []
 for k in train:
@@ -79,7 +86,7 @@ model_conv.add(Flatten())
 
 model_conv.add(Dense(100, activation="relu"))
 model_conv.add(Dense(250, activation="relu"))
-model_conv.add(Dense(10, activation="softmax"))
+model_conv.add(Dense(2, activation="softmax"))
 
 
 model_conv.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=['accuracy'])
@@ -92,3 +99,46 @@ model_conv.save("model.h5")
 
 #model_conv.summary()
 
+
+"""
+        TEST
+        
+"""
+
+#elt = 0 # L image a choisir
+
+X_test=[]
+y_test = []
+for k in test:
+    X_test.append(np.asarray(k[0]))
+    y_test.append(np.asarray(k[1]))
+
+X_test = np.asarray(X_test)
+
+
+y_test = np.asarray(y_test)
+
+
+X_test = X_test/ 255
+
+#X_test = X_test[elt]
+
+#y_test = y_test[elt]
+
+#X_test = X_test.reshape(1, 100, 100, 1)
+X_test = X_test.reshape(len(X_test), 100, 100, 1)
+
+#Prediction = model_conv.predict(X_test,y_test)
+score, acc = model_conv.evaluate(X_test, y_test, batch_size=10)
+
+print("ACCURACY :")
+print(acc)
+
+
+"""
+print("Notre animal est")
+print(y_test)
+
+print("AUTRE  /   HIBOU OU CHOUETTE")
+print(Prediction)
+"""
