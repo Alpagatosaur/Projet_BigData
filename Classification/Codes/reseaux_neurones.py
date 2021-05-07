@@ -96,15 +96,27 @@ model_conv.compile(loss="sparse_categorical_crossentropy", optimizer="adam", met
 model_conv.fit(X_train, y_train, epochs=3,batch_size=10)
 model_conv.save("model.h5")
 
+"""
+OPTIMISATION
+
+"""
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model_conv)
+
+tflite_model = converter.convert()
+open("converted_model.tflite", "wb").write(tflite_model)
+
 
 #model_conv.summary()
+
+
 
 
 """
         TEST
         
 """
-
+print("TEST")
 #elt = 0 # L image a choisir
 
 X_test=[]
